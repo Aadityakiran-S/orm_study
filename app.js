@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const routes = require('./routes/router.js');
-const { urlencoded } = require('express');
 require('dotenv').config();
 
 //using the json parser
