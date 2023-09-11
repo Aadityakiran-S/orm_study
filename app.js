@@ -11,16 +11,12 @@ app.use('/api/v1/users', routes);
 
 const port = process.env.PORT || 3000;
 
-const db = require('./models');
-
-db.sequelize.sync().then((req) => {
-    app.listen(port, (err) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        console.log(`Server is listening on port ${port}....`);
-    });
+app.listen(port, (err) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    console.log(`Server is listening on port ${port}....`);
 });
 
 module.exports = app;

@@ -43,4 +43,10 @@ router.route('/price_tracking/fuzzy_search').get(findMinPriceBetweenTwoDates_Fuz
 router.route('/price_tracking/customer_product').get(customerProductPriceTracking);
 //#endregion
 
+//#region Miscellaneous
+const { sync_db } = require('../modules/general/sync_db.js');
+
+router.route('/sync_db').get(sync_db);
+//#endregion
+
 module.exports = router;
