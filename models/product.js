@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-    const Customer = sequelize.define("customer", {
-        customer_id: {
+    const Product = sequelize.define("product", {
+        product_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             allowNull: false,
@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: true
             }
         },
-        customer_name: {
+        product_name: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -18,5 +18,5 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    return Customer;
+    return Product;
 }

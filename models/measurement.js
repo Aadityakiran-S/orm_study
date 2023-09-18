@@ -1,15 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-    const Customer = sequelize.define("customer", {
-        customer_id: {
-            type: DataTypes.INTEGER,
+    const Measurement = sequelize.define("measurement", {
+        measure_keyword: {
+            type: DataTypes.STRING,
             primaryKey: true,
             allowNull: false,
-            autoIncrement: true,
             validate: {
                 notEmpty: true
             }
         },
-        customer_name: {
+        unit_in_si: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -18,5 +17,5 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    return Customer;
+    return Measurement;
 }

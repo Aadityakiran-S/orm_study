@@ -1,16 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
-    const Customer = sequelize.define("customer", {
-        customer_id: {
-            type: DataTypes.INTEGER,
+    const Movement = sequelize.define("movement", {
+        movement_keyword: {
+            type: DataTypes.STRING,
             primaryKey: true,
             allowNull: false,
-            autoIncrement: true,
             validate: {
                 notEmpty: true
             }
         },
-        customer_name: {
-            type: DataTypes.STRING,
+        incoming_or_outgoing: {
+            type: DataTypes.BOOLEAN,
             allowNull: false,
             validate: {
                 notEmpty: true
@@ -18,5 +17,5 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    return Customer;
+    return Movement;
 }

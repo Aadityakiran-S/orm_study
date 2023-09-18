@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "1996",
-    "database": "garibaldi",
+    "database": "garibaldi_orm",
     "host": "localhost",
     "dialect": "postgres"
   }
