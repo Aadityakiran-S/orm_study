@@ -72,10 +72,10 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     InvoiceItem.associate = function (models) {
-        InvoiceItem.belongsTo(models.Invoice, { foreignKey: 'invoice_id', targetKey: 'invoice_id' });
-        InvoiceItem.belongsTo(models.Supplier, { foreignKey: 'supplier_id', targetKey: 'supplier_id' });
-        InvoiceItem.belongsTo(models.Product, { foreignKey: 'product_id', targetKey: 'product_id' });
-        InvoiceItem.belongsTo(models.Customer, { foreignKey: 'customer_id', targetKey: 'customer_id' });
+        InvoiceItem.belongsTo(models.invoice, { foreignKey: 'invoice_id', targetKey: 'invoice_id' });
+        InvoiceItem.belongsTo(models.supplier, { foreignKey: 'supplier_id', targetKey: 'supplier_id' });
+        InvoiceItem.belongsTo(models.product, { foreignKey: 'product_id', targetKey: 'product_id' });
+        InvoiceItem.belongsTo(models.customer, { foreignKey: 'customer_id', targetKey: 'customer_id' });
     };
 
     return InvoiceItem;

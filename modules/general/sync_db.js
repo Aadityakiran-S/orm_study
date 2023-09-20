@@ -1,4 +1,4 @@
-const db = require('../models');
+const db = require('../../models');
 
 const sync_db = async (req, res) => {
     try {

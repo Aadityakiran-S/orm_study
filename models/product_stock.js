@@ -63,12 +63,12 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     ProductStock.associate = function (models) {
-        ProductStock.belongsTo(models.Product, { foreignKey: 'product_id', targetKey: 'product_id' });
-        ProductStock.belongsTo(models.Customer, { foreignKey: 'customer_id', targetKey: 'customer_id' });
-        ProductStock.belongsTo(models.Supplier, { foreignKey: 'supplier_id', targetKey: 'supplier_id' });
-        ProductStock.belongsTo(models.Measurement, { foreignKey: 'measure_keyword', targetKey: 'measure_keyword' });
-        ProductStock.belongsTo(models.InvoiceItem, { foreignKey: 'invoice_item_id', targetKey: 'invoice_item_id' });
-        ProductStock.belongsTo(models.Movement, { foreignKey: 'movement_keyword', targetKey: 'movement_keyword' });
+        ProductStock.belongsTo(models.product, { foreignKey: 'product_id', targetKey: 'product_id' });
+        ProductStock.belongsTo(models.customer, { foreignKey: 'customer_id', targetKey: 'customer_id' });
+        ProductStock.belongsTo(models.supplier, { foreignKey: 'supplier_id', targetKey: 'supplier_id' });
+        ProductStock.belongsTo(models.measurement, { foreignKey: 'measure_keyword', targetKey: 'measure_keyword' });
+        ProductStock.belongsTo(models.invoice_item, { foreignKey: 'invoice_item_id', targetKey: 'invoice_item_id' });
+        ProductStock.belongsTo(models.movement, { foreignKey: 'movement_keyword', targetKey: 'movement_keyword' });
     };
 
     return ProductStock;

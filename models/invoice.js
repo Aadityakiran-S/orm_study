@@ -42,8 +42,8 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Invoice.associate = function (models) {
-        Invoice.belongsTo(models.Customer, { foreignKey: 'customer_id', as: 'customer_id' });
-        Invoice.belongsTo(models.Supplier, { foreignKey: 'supplier_id', as: 'supplier_id' });
+        Invoice.belongsTo(models.customer, { foreignKey: 'customer_id', targetKey: 'customer_id' });
+        Invoice.belongsTo(models.supplier, { foreignKey: 'supplier_id', targetKey: 'supplier_id' });
     };
 
     return Invoice;

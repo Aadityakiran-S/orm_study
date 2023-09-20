@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     SupplierProduct.associate = function (models) {
-        SupplierProduct.belongsTo(models.Supplier, { foreignKey: 'supplier_id', targetKey: 'supplier_id' });
-        SupplierProduct.belongsTo(models.Product, { foreignKey: 'product_id', targetKey: 'product_id' });
+        SupplierProduct.belongsTo(models.supplier, { foreignKey: 'supplier_id', targetKey: 'supplier_id' });
+        SupplierProduct.belongsTo(models.product, { foreignKey: 'product_id', targetKey: 'product_id' });
     };
 
     return SupplierProduct;
