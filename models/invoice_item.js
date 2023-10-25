@@ -64,6 +64,7 @@ module.exports = (sequelize, DataTypes) => {
         upc: {
             type: DataTypes.STRING,
         },
+    }, {
         indexes: [
             {
                 fields: ['date']

@@ -54,7 +54,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         date: {
             type: DataTypes.DATE,
-        },
+        }
+    }, {
         indexes: [
             {
                 fields: ['date']
