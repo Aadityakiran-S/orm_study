@@ -1,13 +1,13 @@
 const executeDBQuery = require('../../helpers/query-execution-helper.js');
+// const { Sequelize } = require('sequelize');
+// const { sequelize } = require('../../models/index.js');
+// const productModel = require('../../models/product')(sequelize, Sequelize.DataTypes);
+const { product } = require('../../models/index.js');
 
 const listAllProducts = async (req, res) => {
     try {
-        let listAllProducts = {
-            name: `List all products`,
-            text: `SELECT * FROM product`,
-        }
-        const queryResult = await executeDBQuery(listAllProducts);
-        return res.status(201).json({ success: true, data: queryResult.rows })
+        const queryResult = await product.findAll();
+        return res.status(201).json({ success: true, data: queryResult })
     }
     catch (error) {
         return res.status(500).json({ success: false, msg: error.message });
