@@ -2,11 +2,13 @@ const executeDBQuery = require('../../helpers/query-execution-helper.js');
 // const { Sequelize } = require('sequelize');
 // const { sequelize } = require('../../models/index.js');
 // const productModel = require('../../models/product')(sequelize, Sequelize.DataTypes);
-const { product } = require('../../models/index.js');
+const db = require('../../models/index.js');
 
+//#DONE
 const listAllProducts = async (req, res) => {
     try {
-        const queryResult = await product.findAll();
+        const product_model = db.product;
+        const queryResult = await product_model.findAll();
         return res.status(201).json({ success: true, data: queryResult })
     }
     catch (error) {
@@ -14,27 +16,28 @@ const listAllProducts = async (req, res) => {
     }
 }
 
+//#DONE
 const listProductsBySupplier = async (req, res) => {
     let { id: s_id } = req.params;
     try {
-        //Checking if supplier with given id exists
-        let query = {
-            name: `Checking if supplier with given id exists`,
-            text: `SELECT EXISTS (SELECT 1 FROM supplier WHERE supplier_id = $1);`,
-            values: [s_id]
-        }
-        const res1 = await executeDBQuery(query);
-        if (!res1.rows[0].exists) {
-            return res.status(500).json({ success: false, msg: `Supplier with ID ${s_id} DNE` });
-        }
+        const product_model = db.product; const supplier_product_model = db.supplier_product;
 
-        let listAllProductsBySupplier = {
-            name: `List all products by supplier`,
-            text: `SELECT p.product_name FROM supplier_product sp JOIN product p ON sp.product_id = p.product_id WHERE sp.supplier_id = $1;`,
-            values: [s_id]
-        }
-        const queryResult = await executeDBQuery(listAllProductsBySupplier);
-        return res.status(201).json({ success: true, data: queryResult.rows })
+        //Find all Product IDs associated with the supplierID given
+        const productIds = await supplier_product_model.findAll({
+            where: { supplier_id: s_id },
+            attribute: ['product_id']
+        });
+
+        //Filter out just the productIds from that array
+        const productIdArray = productIds.map((entry) => entry.product_id);
+
+        //Find the corresponding Product name using those Ids
+        const products = await product_model.findAll({
+            where: { product_id: productIdArray },
+            attribute: ['product_name']
+        });
+
+        return res.status(200).json({ success: true, data: products });
     }
     catch (error) {
         return res.status(500).json({ success: false, msg: error.message });
@@ -65,7 +68,7 @@ const listAllProductsByCustomer = async (req, res) => {
             values: [c_id]
         }
         const queryResult = await executeDBQuery(listAllProductsByCustomer);
-        return res.status(201).json({ success: true, data: queryResult.rows })
+        return res.status(201).json({ success: true, data: queryResult.rows });
     }
     catch (error) {
         return res.status(500).json({ success: false, msg: error.message });
